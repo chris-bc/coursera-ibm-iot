@@ -1,0 +1,7 @@
+---
+applications:
+- name : cbc-nodeserver
+  instances : 1
+  memory : 256M
+services:
+- cbc-pi-iotf-service
