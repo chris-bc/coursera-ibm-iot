@@ -1,0 +1,18 @@
+bluemix info
+organization id 0sq3bo
+device type raspberrypi
+device id wlan mac b827ebccf3d0
+auth token 9MSnXtWgh)uRFF0Z_4
+
+API key a-0sq3bo-pw7mp8uscw
+Application auth token 3nX6N&xP?l2SlwqQXK
+
+Gateway device
+device type raspberryGW
+device id eth0 mac b827eb99a685
+auth token *V7yigNRFQ0ElL?!AM
+
+sense hat
+device type senseHat
+device id senb827ebccf3d0
+auth token dn3ZGIz?L5QDU_(NWg
