@@ -6,3 +6,6 @@ applications:
   name: cbc-a4
   host: cbc-a4
   disk_quota: 1024M
+services:
+- cbc-pi-iotf-service
+
