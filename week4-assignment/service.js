@@ -12,7 +12,7 @@ Service.prototype.connect = function() {
 
   this.appClient.on('connect', function() {
     // hook up device events here with this.appClient
-    appClient.subscribeToDeviceEvents();
+    this.appClient.subscribeToDeviceEvents();
   }.bind(this));
 
   this.appClient.on('deviceEvent', function (deviceType, deviceId, eventType, format, payload) {
@@ -25,7 +25,7 @@ Service.prototype.connect = function() {
         this.deviceType = deviceType;
         this.deviceId = deviceId;
       }
-      handleTempEvent(payload.d.temperature);
+      this.handleTempEvent(payload.d.temperature);
     }
   }.bind(this));
 };
@@ -37,9 +37,9 @@ Service.prototype.handleTempEvent = function(temp) {
     // Need to change the screen because it has not yet been set or we've just
     //   crossed the threshold
     if (temp < threshold) {
-      warningOff();
+      this.warningOff();
     } else {
-      warningOn();
+      this.warningOn();
     }
     this.prevTemp = temp;
   }
