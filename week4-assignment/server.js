@@ -2,7 +2,18 @@ var iotf = require('ibmiotf');
 
 // TODO create your iotf application client here
 var appClientConfig // = ... ;
-var appClient // = ...;
+if (process.env.VCAP_SERVICES) {
+	var env = JSON.parse(process.env.VCAP_SERVICES);
+	appClientConfig = {
+		'org' : env["iotf-service"][0].credentials.org,
+		'id' : 'cbc-a4',
+		'auth-key' : env["iotf-service"][0].credentials.apiKey,
+		'auth-token' : env["iotf-service"][0].credentials.apiToken
+	}
+} else {
+	appClientConfig = require('./application.json');
+}
+var appClient = new iotf.IotfApplication(appClientConfig);
 
 var Service = require('./service');
 
@@ -20,5 +31,6 @@ app.get('/status', function(req, res) {
 module.exports = app.listen(cfappEnv.port, function() {
   console.log('server started on ' + cfappEnv.url);
   var service = new Service(appClient);
-  // TODO use service to connect here
+  // use service to connect here
+  service.connect();
 });

@@ -3,6 +3,6 @@ applications:
   memory: 256M
   instances: 1
   domain: mybluemix.net
-  name: YOUR-APP-NAME
-  host: YOUR-APP-NAME
+  name: cbc-a4
+  host: cbc-a4
   disk_quota: 1024M
