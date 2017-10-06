@@ -1,4 +1,5 @@
 var iotf = require('ibmiotf');
+var service;
 
 // TODO create your iotf application client here
 var appClientConfig // = ... ;
@@ -28,9 +29,26 @@ app.get('/status', function(req, res) {
   res.status(200).json({ message: 'iot service running' });
 });
 
+app.get('/', function(req, res) {
+  var response = "Server running on " + cfappEnv.url + "<br/>";
+  if (service) {
+    if (service.deviceType || service.deviceId) {
+      response += "Events being transmit and received from device " + service.deviceId + " of type " + service.deviceType + "<br/>";
+    } else {
+      response += "No device events received yet<br/>";
+    }
+    if (service.prevTemp) {
+      response += "Last temperature received was " + service.prevTemp;
+    } else {
+      response += "No previous temperature received";
+    }
+  }
+  res.send(response);
+});
+
 module.exports = app.listen(cfappEnv.port, function() {
   console.log('server started on ' + cfappEnv.url);
-  var service = new Service(appClient);
+  service = new Service(appClient);
   // use service to connect here
   service.connect();
 });

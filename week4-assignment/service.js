@@ -32,7 +32,7 @@ Service.prototype.connect = function() {
 
 Service.prototype.handleTempEvent = function(temp) {
   // handle temperature changes here and call this.warningOn/this.warningOff accordingly.
-  var threshold = 29;
+  var threshold = 31;
   if (!this.prevTemp || (this.prevTemp < threshold && temp >= threshold) || (this.prevTemp >= threshold && temp < threshold)) {
     // Need to change the screen because it has not yet been set or we've just
     //   crossed the threshold
@@ -41,8 +41,8 @@ Service.prototype.handleTempEvent = function(temp) {
     } else {
       this.warningOn();
     }
-    this.prevTemp = temp;
   }
+  this.prevTemp = temp;
 };
 
 Service.prototype.warningOn = function() {
